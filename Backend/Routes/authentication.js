@@ -1,5 +1,5 @@
 const express = require('express')
-const {signup, signout}  = require('../Controllers/authentication')
+const {signup, signout,signin}  = require('../Controllers/authentication')
 const router = express.Router()
 const {body, validationResult} = require('express-validator')
 
@@ -11,7 +11,10 @@ router.post('/signup',[
     body("password", "password should be atleast 5 char long").isLength({min:5}),
 ], signup)
 
-
+router.post('/signin',[
+    body("email", "valid email should be entered").isEmail(),
+    body("password", "password should be entered").isLength({min:1}),
+], signin)
 
 
 // every request linked with router will be thrown out by exporting router

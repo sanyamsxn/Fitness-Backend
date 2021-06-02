@@ -3,11 +3,7 @@ const {validationResult}  =require('express-validator')
 const jwt =require('jsonwebtoken')
 const expressJwt = require('express-jwt')
 
-exports.signout = (req,res) =>{
-    res.json({
-        "message" : "user signout successfully"
-    })
-}
+
 
 
 
@@ -29,7 +25,6 @@ exports.signup = (req,res)=>{
         })
     })
 }
-
 
 exports.signin = (req,res)=>{
     const errors = validationResult(req);
@@ -70,5 +65,11 @@ exports.signin = (req,res)=>{
             token, user:{_id, name, email}
         })
 
+    })
+}
+
+exports.signout = (req,res)=>{
+    res.clearCookie("token").json({
+        message : "signout successfull"
     })
 }

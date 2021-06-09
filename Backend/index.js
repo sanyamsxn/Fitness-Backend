@@ -1,13 +1,16 @@
 const express =require('express')
 const dotenv = require('dotenv')
+dotenv.config()
 const dbConnection = require('./DB_Connection/dbConnect')
 const colors = require('colors')
 const authRoutes = require('./Routes/authentication')
+const exerciseRoutes = require('./Routes/exercise')
+const workoutRoutes = require('./Routes/workout')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-dotenv.config()
+
 const app = express();
 
 //librarymiddlewares
@@ -17,6 +20,8 @@ app.use(cors())            // cross origin resource sharing
 
 //custom middleware : prefixing every authentication routes with /api
 app.use('/api', authRoutes)
+app.use('/api', exerciseRoutes)
+app.use('/api', workoutRoutes)
 
 //Port
 const Port = process.env.PORT

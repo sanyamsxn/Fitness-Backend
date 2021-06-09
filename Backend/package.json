@@ -4,7 +4,8 @@
   "description": "backend for fitness app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon  index.js"
+    "start": "nodemon  index.js",
+    "data:import":"node seeder"
   },
   "author": "sanyam",
   "license": "ISC",

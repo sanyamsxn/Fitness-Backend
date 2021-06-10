@@ -67,17 +67,31 @@ exports.signin = (req,res)=>{
 
 
         //sending response to frontend
-        const {_id, name, email} = user;  // destructing the user we get back from the DB
+        const {_id,email} = user;  // destructuring the user we get back from the DB
+        
+        // User.updateOne({
+        //     _id : user._id,
+        //     $set: {isSignedIn : true}
+        // }, function(err,res){if(err){console.log(error)}else{console.log("updated")}})
+    
         return res.json({
-            token, user:{_id, name, email}
+            token, user:{_id, email}
         })
-
     })
 }
 
+
+// TODO : check whether its working or not 
 exports.signout = (req,res)=>{
-    res.clearCookie("token").json({
-        message : "signout successfull"
+    const Id = req.body.user._id;
+
+    User.updateOne({
+        _id : Id,
+        $set: {isSignedIn : false}
+    }, function(err,res){if(err){console.log(error)}else{console.log("updated to false")}})
+
+    res.status(200).json({
+        message : "sign out successfull"
     })
 }
 
@@ -108,3 +122,12 @@ exports.isAuthenticated = (req, res , next)=>{
     }
 }
 
+
+// exports.isSignedIn = (req, res, next) =>{
+//     const Id = req.body.user._id;
+//     const user = User.findById(Id);
+//     console.log(user)
+
+
+//     next();
+// }

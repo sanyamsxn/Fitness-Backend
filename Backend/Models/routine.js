@@ -5,15 +5,15 @@ const routineSchema = new mongoose.Schema({
     ownerId : {
         type : mongoose.Schema.Types.ObjectId,
         ref: "User",
-        require : true
+        required : true
     },
     title : {
         type:String,
-        require:true
+        required:true
     }, 
     description : {
         type : String,
-        require:true
+        required:true
     },
     exercisesWithData : {
         type:Array,

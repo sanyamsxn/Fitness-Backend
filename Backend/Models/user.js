@@ -5,12 +5,17 @@ const { v1: uuidv1 } = require('uuid');
 const userSchema = new mongoose.Schema({
     email : {
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     encrypt_password : {
         type:String,
-        require:true
+        required:true
+    },
+    isSignedIn : {
+        type : Boolean,
+        default : true,
+        required:true
     },
     salt : String,
 },{timestamps:true})

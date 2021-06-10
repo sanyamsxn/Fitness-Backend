@@ -3,12 +3,14 @@ const Routine = require('../Models/routine')
 exports.createRoutine = (req,res)=>{
     const routine = new Routine(req.body)
     routine.save((error, routine)=>{
-        if(error || !routine){
+        if(error){
+            console.log("error is : ", error)
             return res.status(400).json({
                 message : "Unable to create routine"
             })
         }
         return res.status(200).json({
+            routine,
             message : "Routine created successfully"
         })
     })
@@ -25,7 +27,7 @@ exports.getRoutine = (req,res)=>{
             })
         }
         return res.status(200).json({
-            message : "Routine loaded"
+            routine
         })
     })
 }

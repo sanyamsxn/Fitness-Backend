@@ -1,9 +1,9 @@
 const express = require('express')
-const {signup, signout,signin, isSignedIn, isAuthenticate}  = require('../Controllers/authentication')
+const {signup, signout,signin, isSignedIn, isAuthenticated}  = require('../Controllers/authentication')
 const router = express.Router()
 const {body, validationResult} = require('express-validator')
 
-router.get('/signout', signout)
+router.get('/signout', isAuthenticated, signout)
 
 router.post('/signup',[
     body("email", "Please enter a valid email").isEmail(),
@@ -13,7 +13,7 @@ router.post('/signup',[
 router.post('/signin',[
     body("email", "valid email should be entered").isEmail(),
     body("password", "password should be entered").isLength({min:1}),
-], signin)
+],signin)
 
 
 

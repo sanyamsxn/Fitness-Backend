@@ -6,6 +6,7 @@ const colors = require('colors')
 const authRoutes = require('./Routes/authentication')
 const exerciseRoutes = require('./Routes/exercise')
 const workoutRoutes = require('./Routes/workout')
+const routineRoutes = require('./Routes/routine')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
@@ -22,6 +23,7 @@ app.use(cors())            // cross origin resource sharing
 app.use('/api', authRoutes)
 app.use('/api', exerciseRoutes)
 app.use('/api', workoutRoutes)
+app.use('/api', routineRoutes)
 
 //Port
 const Port = process.env.PORT

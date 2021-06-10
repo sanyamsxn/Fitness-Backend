@@ -1,6 +1,6 @@
 {
     "window.autoDetectColorScheme": true,
-    "workbench.colorTheme": "Night Owl Black",
+    "workbench.colorTheme": "Night Owl Black (No Italics)",
     "workbench.preferredDarkColorTheme": "Visual Studio Dark",
     "workbench.editor.decorations.colors": false,
     "workbench.preferredLightColorTheme": "Monokai"

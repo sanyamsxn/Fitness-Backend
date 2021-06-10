@@ -11,11 +11,11 @@ const exerciseSchema = new mongoose.Schema({
     ownerId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
-        require : true
+        required : true
 	},
     title : {
         type :String,
-        require : true
+        required : true
     },
     imageUrl : {
         type:String
@@ -27,12 +27,12 @@ const exerciseSchema = new mongoose.Schema({
             title :String,
             bodyParts : String
         },
-        require:true
+        required:true
     },
     secondaryMuscles : [secondaryMusclesSchema],
     type : {
         type:String,
-        require:true
+        required:true
     }
 })
 

@@ -69,11 +69,15 @@ exports.signin = (req,res)=>{
         //sending response to frontend
         const {_id,email} = user;  // destructuring the user we get back from the DB
         
+        User.updateOne({
+            _id : user._id,
+            $set: {isSignedIn : true}
+        }, function(err,res){if(err){console.log(error)}else{console.log("updated to true")}})
         // User.updateOne({
-        //     _id : user._id,
+        //     _id : _id,
         //     $set: {isSignedIn : true}
-        // }, function(err,res){if(err){console.log(error)}else{console.log("updated")}})
-    
+        // }, function(err,res){if(err){console.log(error)}else{console.log("updated to true")}})
+
         return res.json({
             token, user:{_id, email}
         })
@@ -118,7 +122,7 @@ exports.isAuthenticated = (req, res , next)=>{
             next();
         })
     }catch{
-        res.json({message: "invalid request"})
+        res.status(400).json({message: "invalid request"})
     }
 }
 

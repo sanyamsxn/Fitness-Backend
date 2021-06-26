@@ -10,7 +10,7 @@ exports.createRoutine = (req,res)=>{
             })
         }
         return res.status(200).json({
-            routine,
+            routineId: routine._id,
             message : "Routine created successfully"
         })
     })
@@ -18,16 +18,15 @@ exports.createRoutine = (req,res)=>{
 
 exports.getRoutine = (req,res)=>{
     const Id = req.body.user._id
-    console.log("Id from middleware is: ", Id)
 
-    Routine.find({ownerId : Id}).exec((error,routine)=>{
-        if(error || !routine){
+    Routine.find({ownerId : Id}).exec((error,routines)=>{
+        if(error){
             return res.status(400).json({
                 message : "Unable to find routine"
             })
         }
         return res.status(200).json({
-            routine
+            routines
         })
     })
 }

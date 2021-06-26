@@ -63,23 +63,20 @@ exports.signin = (req,res)=>{
         //creating token 
         const token = jwt.sign({_id : user._id}, process.env.Secret)
         //put this token in cookies using cookie parser
-        res.cookie("token", token, {expire : new Date() +9999})
+        // res.cookie("token", token, {expire : new Date() +9999})
 
 
         //sending response to frontend
         const {_id,email} = user;  // destructuring the user we get back from the DB
         
-        User.updateOne({
-            _id : user._id,
-            $set: {isSignedIn : true}
-        }, function(err,res){if(err){console.log(error)}else{console.log("updated to true")}})
-        // User.updateOne({
-        //     _id : _id,
-        //     $set: {isSignedIn : true}
-        // }, function(err,res){if(err){console.log(error)}else{console.log("updated to true")}})
+        User.updateOne({_id : user._id},
+            { $set: {isSignedIn : true}}, 
+            function(err,res){if(err){console.log(error)}else{console.log("updated to true")}}
+        )
 
         return res.json({
-            token, user:{_id, email}
+            userId:_id,
+            token 
         })
     })
 }
@@ -89,10 +86,12 @@ exports.signin = (req,res)=>{
 exports.signout = (req,res)=>{
     const Id = req.body.user._id;
 
-    User.updateOne({
-        _id : Id,
-        $set: {isSignedIn : false}
-    }, function(err,res){if(err){console.log(error)}else{console.log("updated to false")}})
+    User.updateOne({_id : Id,},
+        {$set: {isSignedIn : false}}, 
+        function(err,res){
+        if(err){console.log("error is : ", err)}
+        else{console.log("updated to false")}}
+    )
 
     res.status(200).json({
         message : "sign out successfull"

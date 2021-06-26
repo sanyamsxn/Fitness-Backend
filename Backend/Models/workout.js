@@ -14,7 +14,6 @@ const workoutSchema = new mongoose.Schema({
     }, 
     description : {
         type : String,
-        required:true
     },
     exercisesWithData : {
         type:Array,

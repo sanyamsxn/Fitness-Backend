@@ -13,6 +13,7 @@ exports.createWorkout = (req,res) => {
             })
         }
         return res.status(200).json({
+            workoutId: workout._id,
             message : "workout successfully created"
         })
     })
@@ -27,7 +28,9 @@ exports.getWorkout = (req, res) => {
                 message : "No workouts"
             })
         }
-        return res.status(200).json(workouts)
+        return res.status(200).json({
+            workouts
+        })
     })
     
 }

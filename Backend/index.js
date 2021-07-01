@@ -7,6 +7,7 @@ const authRoutes = require('./Routes/authentication')
 const exerciseRoutes = require('./Routes/exercise')
 const workoutRoutes = require('./Routes/workout')
 const routineRoutes = require('./Routes/routine')
+const userUpdateRoutes = require('./Routes/user')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
@@ -24,6 +25,7 @@ app.use('/api', authRoutes)
 app.use('/api', exerciseRoutes)
 app.use('/api', workoutRoutes)
 app.use('/api', routineRoutes)
+app.use('/api', userUpdateRoutes)
 
 //Port
 const Port = process.env.PORT

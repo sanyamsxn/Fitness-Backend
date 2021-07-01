@@ -28,7 +28,7 @@ exports.signup = (req,res)=>{
         }
         const token = jwt.sign({_id : user._id}, process.env.Secret)
         res.status(200).json({
-            userId : user._id,
+            user : {_id : user._id},
             token : token
         })
     })
@@ -75,7 +75,7 @@ exports.signin = (req,res)=>{
         )
 
         return res.json({
-            userId:_id,
+            user : {_id : user._id, name : user.name, bio : user.bio, bodyWeight : user.bodyWeight, age : user.age, gender: user.gender, imageUrl : user.imageUrl},
             token 
         })
     })

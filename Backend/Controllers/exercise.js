@@ -19,7 +19,7 @@ exports.createExercise =(req,res)=>{
 
 exports.getExercises = (req,res)=>{
     const exercisesByUser = req.body.exercises
-    Exercise.find({ownerId : "60bb7e884088d211a7d31410"}).exec((error, exercises)=>{
+    Exercise.find({ownerId : "60e029a6ede3d7145654b3e0"}).exec((error, exercises)=>{
         if(error || !exercises){
             return res.status(400).json({
                 message : "No exercise was found"
